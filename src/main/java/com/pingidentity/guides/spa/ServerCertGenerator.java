@@ -95,6 +95,7 @@ public final class ServerCertGenerator
 
         GeneralNames names = new GeneralNames();
         names.add(new GeneralName(new DNSName("localhost")));
+        names.add(new GeneralName(new DNSName("host.docker.internal")));
         SubjectAlternativeNameExtension altNameExtension = new SubjectAlternativeNameExtension(false, names);
         extensions.set(PKIXExtensions.SubjectAlternativeName_Id.toString(), altNameExtension);
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:OAuthConfig enableOAuth="true" authzCodeLength="30" authzCodeTimeout="60" rollRefreshTokens="false" rollingInterval="0" refreshTokenLength="42" atmIdForOAuthGrantManagement="" scopeForOAuthGrantManagement="" globalPersistentGrantExpirationTime="-1" globalPersistentGrantExpirationTimeUnit="d" globalPersistentGrantIdleTimeout="30" globalPersistentGrantIdleTimeoutTimeUnit="d" tokenEndpointBaseUrl="" userAuthzUrl="" registeredAuthzPath="" pendingAuthzTimeout="600" bypassActivationCodeConfirmation="false" devicePollingInterval="5" authzConsentSetting="INTERNAL" xmlns:urn="urn:pingidentity.com:pf:oauth:conf">
+    <urn:UserKeyToAccessTokenMapping contextId="authz_req|spaSampleHtmlForm" tokenManagerId="spaSampleAtm">
+        <urn1:AttributeMap Name="sub" Type="Adapter" Value="adapter.username" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="groups" Type="Expression" Value="((#this.get('USER_KEY').value == &quot;bob&quot;) ? 
+new org.sourceid.saml20.adapter.attribute.AttributeValue({&quot;staff&quot;, &quot;sales&quot;}) :
+(#this.get('USER_KEY').value == &quot;alice&quot;) ?
+new org.sourceid.saml20.adapter.attribute.AttributeValue({&quot;staff&quot;}) : 
+new org.sourceid.saml20.adapter.attribute.AttributeValue({&quot;staff&quot;, &quot;sre&quot;}))" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="username" Type="Adapter" Value="adapter.username" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+    </urn:UserKeyToAccessTokenMapping>
+    <urn:AdapterToUserKeyMapping sourcePluginId="spaSampleHtmlForm">
+        <urn1:AttributeMap Name="USER_NAME" Type="Adapter" Value="username" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="USER_KEY" Type="Adapter" Value="username" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+    </urn:AdapterToUserKeyMapping>
+    <urn:ReuseExistingPersistentGrantForGrant>implicit</urn:ReuseExistingPersistentGrantForGrant>
+    <urn:AllowAutoAuthzForExistingPersistentGrant>implicit</urn:AllowAutoAuthzForExistingPersistentGrant>
+</urn:OAuthConfig>

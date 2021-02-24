@@ -18,6 +18,9 @@
 
 package com.pingidentity.guides.spa;
 
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,11 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
+
+import javax.net.ssl.SSLException;
 
 /**
  * A {@link Configuration} bean that defines some configuration to enable local development.
@@ -63,5 +71,24 @@ public class DevSupportConfiguration
         }
 
         return builder.routes().build();
+    }
+
+    @Bean
+    public WebClient webClient()
+    {
+        WebClient.Builder builder = WebClient.builder();
+        try
+        {
+            SslContext sslContext = SslContextBuilder.forClient()
+                                                     .trustManager(InsecureTrustManagerFactory.INSTANCE)
+                                                     .build();
+            HttpClient client = HttpClient.create().secure(t -> t.sslContext(sslContext));
+            builder.clientConnector(new ReactorClientHttpConnector(client));
+        }
+        catch (SSLException e)
+        {
+            throw new IllegalStateException("Failed to configure insecure trust manager for code exchange", e);
+        }
+        return builder.build();
     }
 }

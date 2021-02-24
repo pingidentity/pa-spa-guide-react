@@ -21,3 +21,11 @@ logging:
     org.springframework.cloud: WARN
     org.springframework.context.support.PostProcessorRegistrationDelegate: WARN
     reactor.netty.tcp.TcpServer: OFF
+
+pingaccess:
+  jwks-url: https://localhost:3000/pa/authtoken/JWKS
+  jwt:
+    issuer: PingAccessAuthToken
+    audience: app.test
+    user-name-claim: sub
+    groups-claim: groups
