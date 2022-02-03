@@ -3,9 +3,14 @@ import { v4 as uuid } from 'uuid';
 import { Box, Heading, Text, Button } from 'rebass';
 import { Input } from '@rebass/forms';
 
-const TODOS_ENDPOINT = '/todos';
-const USER_ENDPOINT = '/user';
-const LOGOUT_ENDPOINT = '/logout';
+const API_BASE_URL = `${process.env.API_BASE_URL}`;
+const HOME_PAGE = `https://localhost:9001`;
+const NON_INTERACTIVE_LOGIN_ENDPOINT = `${API_BASE_URL}/login/non-interactive`;
+const LOGIN_ENDPOINT = `${API_BASE_URL}/login`;
+const TODOS_ENDPOINT = `${API_BASE_URL}/todos`;
+const USER_ENDPOINT = `${API_BASE_URL}/user`;
+const LOGOUT_ENDPOINT = `${API_BASE_URL}/logout`;
+const LOGOUT_SESSION_ONLY = `${API_BASE_URL}/pa/oidc/logout`;
 const SESSION_ERROR = Symbol();
 const SESSION_REFRESH_INTERVAL = 5000; // milliseconds
 
@@ -13,6 +18,11 @@ export default () => {
   const [error, setError] = useState(SESSION_ERROR);
   const [user, setUser] = useState({});
 
+  /*
+    The call to /user in PingAccess will return JSON with the username and array of groups, formatted in the same way as
+    the pre-onboarded SPA /user endpoint was. However, the data is populated with identity information from the OpenID
+    provider.
+   */
   useEffect(() => {
     fetchUserData({ setError, setUser });
   }, [setError, setUser]);
@@ -45,7 +55,7 @@ function Session(props) {
           <h2>Log in to see your todos.</h2>
         </div>
         <div className="form-row">
-          <Button onClick={() => window.location = '/login'}>Log In</Button>
+          <Button onClick={() => login(props.setError, props.setUser)}>Log In</Button>
         </div>
       </>
     );
@@ -56,6 +66,23 @@ function Session(props) {
       {props.children}
     </>
   );
+}
+
+function login(setError, setUser) {
+  /*
+    Call the /login/non-interactive endpoint in PingAccess to see if the user already has a PingFederate session.
+     - If so, a series of 302s to PingFederate and back will establish a PingAccess session cookie. A subsequent call
+     to /users will return a 200 without requiring the page to navigate anywhere, re-render, or relinquish control of
+     the UX.
+     - If not, the call to /users will return a 401 and the application must redirect the end user to the /login endpoint
+      in PingAccess to establish a PingFederate session and PingAccess session cookie.
+   */
+  fetch(NON_INTERACTIVE_LOGIN_ENDPOINT, {
+    method: 'GET',
+    mode: 'no-cors',
+    credentials: 'include'
+  }).then(() => fetchUserDataWithoutCatch({ setError, setUser }))
+    .catch(() => window.location = LOGIN_ENDPOINT);
 }
 
 function Error(props) {
@@ -83,13 +110,6 @@ function User(props) {
     return () => clearInterval(id);
   }, [props.setUser, props.setError]);
 
-  const logout = () => fetch(LOGOUT_ENDPOINT, {
-    method: 'POST',
-    headers: createPostHeaders({})
-  }).then(response => handleApiResponse(LOGOUT_ENDPOINT, response))
-    .then(() => Promise.reject(SESSION_ERROR))
-    .catch(e => props.setError(e));
-
   return (
     <>
       <h2>User details:</h2>
@@ -100,23 +120,44 @@ function User(props) {
         <Button variant='outline' mb={2} onClick={() => fetchUserData(props)}>Refresh User Details</Button>
       </div>
       <div className="form-row">
-        <Button mb={4} onClick={() => logout()}>Logout</Button>
+        <Button mb={2} onClick={() => logout()}>Logout</Button>
+        <Button mb={4} mx={4} onClick={() => logoutPAOnly()}>Logout, This App Only</Button>
       </div>
     </>
   );
 }
 
+function logout() {
+  window.location = LOGOUT_ENDPOINT;
+}
+
+function logoutPAOnly() {
+  fetch(LOGOUT_SESSION_ONLY, {
+    method: 'GET',
+    mode: 'no-cors',
+    credentials: 'include'
+  }).then(() => window.location = HOME_PAGE);
+}
+
 function fetchUserData(props) {
+  return fetchUserDataWithoutCatch(props)
+    .catch(e => {
+      props.setError(e);
+      return Promise.reject(e).catch(() => {
+      });
+    });
+}
+
+/*
+  The fetchUserData function has been split to have the API call inside a function without a catch to facilitate the
+  /login/non-interactive call from the login function.
+ */
+function fetchUserDataWithoutCatch(props) {
   return getApiResponse(USER_ENDPOINT)
     .then(response => handleApiResponse(USER_ENDPOINT, response))
     .then(data => {
       props.setUser(data);
       props.setError(null);
-    })
-    .catch(e => {
-      props.setError(e);
-      return Promise.reject(e).catch(() => {
-      });
     });
 }
 
@@ -214,7 +255,8 @@ function UserTodos(props) {
     const requestConfig = {
       method: 'POST',
       body: JSON.stringify(newTodo),
-      headers: createPostHeaders({ 'Content-Type': 'application/json' })
+      headers: createPostHeaders({ 'Content-Type': 'application/json' }),
+      credentials: 'include'
     };
 
     fetch(TODOS_ENDPOINT, requestConfig)
@@ -275,20 +317,20 @@ function TodoList(props) {
 function createPostHeaders(headers) {
   return Object.assign({}, {
     'Accept': 'application/json',
-    'X-Xsrf-Token': csrfToken()
+    // X-Xsrf-Token value is now set to a constant matching the policy configuration in PingAccess. This combined with
+    // the SameSite attribute set on the session cookie provides CSRF protection.
+    'X-Xsrf-Token': 'constant-value'
   }, headers);
-}
-
-function csrfToken() {
-  return document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
 function getApiResponse(endpoint) {
   return fetch(endpoint, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
+      'Accept': 'application/json',
+      'X-Xsrf-Token': 'constant-value'
+    },
+    credentials: 'include'
   });
 }
 
@@ -305,7 +347,7 @@ function handleApiResponse(endpoint, response) {
     return Promise.resolve({});
   }
 
-  if (contentType === 'application/json') {
+  if (contentType === 'application/json; charset=UTF-8' || contentType === 'application/json') {
     return response.json();
   }
 

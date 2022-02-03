@@ -1,0 +1,58 @@
+version: "2.4"
+#-------------------------------------------------------------------------------------
+#- Ping Identity SPA Onboarding Guide
+#-
+#- To access PingAccess Console
+#- 
+#-    https://localhost:9000/
+#-    
+#-    Username: administrator
+#-    Password: 2FederateM0re
+#
+#- To access PingFederate Console
+#- 
+#-    https://localhost:9999/pingfederate/app
+#-    
+#-    Username: administrator
+#-    Password: 2FederateM0re
+#-------------------------------------------------------------------------------------
+
+services:
+  pingaccess:
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingaccess:${PING_IDENTITY_DEVOPS_TAG}
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pa-spa-guide-react
+      - SERVER_PROFILE_PATH=server-profiles/pingaccess
+      - SERVER_PROFILE_BRANCH=onboarded
+    env_file:
+      - ${HOME}/.pingidentity/devops
+    ports:
+      - "3000:3000"
+      - "9000:9000"
+    networks:
+      - pingnet
+    volumes:
+      - pingaccess-out:/opt/out
+
+  pingfederate:
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingfederate:${PING_IDENTITY_DEVOPS_TAG}
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pa-spa-guide-react
+      - SERVER_PROFILE_PATH=server-profiles/pingfederate
+      - SERVER_PROFILE_BRANCH=onboarded
+    env_file:
+      - ${HOME}/.pingidentity/devops
+    ports:
+      - "9031:9031"
+      - "9999:9999"
+    networks:
+      - pingnet
+    volumes:
+      - pingfederate-out:/opt/out
+
+networks:
+  pingnet:
+
+volumes:
+  pingaccess-out:
+  pingfederate-out:

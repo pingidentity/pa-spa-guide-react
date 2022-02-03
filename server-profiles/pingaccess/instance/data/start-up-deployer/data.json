@@ -1,0 +1,892 @@
+{
+    "data": {
+        "acmeDefaultServer": {
+            "id": "8572f98e-482e-41c2-8a3d-6a0b2fc99734",
+            "location": "https://localhost:9000/pa-admin-api/v3/acme/servers/8572f98e-482e-41c2-8a3d-6a0b2fc99734"
+        },
+        "acmeServers": [
+            {
+                "acmeAccounts": [],
+                "id": "08eb4cbc-20ed-409b-82c6-12fd0c92eb71",
+                "name": "Let's Encrypt",
+                "url": "https://acme-v02.api.letsencrypt.org/directory"
+            },
+            {
+                "acmeAccounts": [],
+                "id": "8572f98e-482e-41c2-8a3d-6a0b2fc99734",
+                "name": "Let's Encrypt Staging Environment",
+                "url": "https://acme-staging-v02.api.letsencrypt.org/directory"
+            }
+        ],
+        "adminAuthBasic": {
+            "enabled": true
+        },
+        "adminAuthWebSession": {
+            "audience": "PingAccessUI",
+            "cookieDomain": null,
+            "cookieType": "Encrypted",
+            "expirationWarningInMinutes": 1,
+            "idleTimeoutInMinutes": 30,
+            "sessionPollIntervalInSeconds": 10,
+            "sessionTimeoutInMinutes": 240
+        },
+        "adminConfig": {
+            "hostPort": "localhost:9090",
+            "httpProxyId": 0,
+            "httpsProxyId": 0
+        },
+        "applications": [
+            {
+                "accessValidatorId": 0,
+                "agentCacheInvalidatedExpiration": 1611253671276,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "agentId": 0,
+                "allowEmptyPathSegments": false,
+                "applicationType": "Web",
+                "authenticationChallengePolicyId": "97f51740-04fb-4e08-9299-160850698249",
+                "caseSensitivePath": false,
+                "contextRoot": "/",
+                "defaultAuthType": "Web",
+                "description": "",
+                "destination": "Site",
+                "enabled": true,
+                "id": 1,
+                "identityMappingIds": {
+                    "API": 0,
+                    "Web": 1
+                },
+                "issuer": null,
+                "lastModified": 1611252771276,
+                "manualOrderingEnabled": false,
+                "name": "SPA Sample App",
+                "policy": {
+                    "API": [],
+                    "Web": [
+                        {
+                            "id": 1,
+                            "type": "Rule"
+                        }
+                    ]
+                },
+                "realm": null,
+                "requireHTTPS": true,
+                "resourceOrder": [],
+                "siteId": 1,
+                "spaSupportEnabled": true,
+                "virtualHostIds": [
+                    1
+                ],
+                "webSessionId": 1
+            },
+            {
+                "accessValidatorId": 0,
+                "agentCacheInvalidatedExpiration": 1611253755161,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "agentId": 0,
+                "allowEmptyPathSegments": false,
+                "applicationType": "Web",
+                "authenticationChallengePolicyId": null,
+                "caseSensitivePath": false,
+                "contextRoot": "/",
+                "defaultAuthType": "Web",
+                "description": "",
+                "destination": "Site",
+                "enabled": true,
+                "id": 2,
+                "identityMappingIds": {
+                    "API": 0,
+                    "Web": 0
+                },
+                "issuer": null,
+                "lastModified": 1611252855161,
+                "manualOrderingEnabled": false,
+                "name": "Create Session Sample",
+                "policy": {
+                    "API": [],
+                    "Web": []
+                },
+                "realm": null,
+                "requireHTTPS": true,
+                "resourceOrder": [],
+                "siteId": 2,
+                "spaSupportEnabled": true,
+                "virtualHostIds": [
+                    6
+                ],
+                "webSessionId": 1
+            }
+        ],
+        "authTokenMgmt": {
+            "issuer": "PingAccessAuthToken",
+            "keyRollEnabled": true,
+            "keyRollPeriodInHours": 24,
+            "signingAlgorithm": "RS256"
+        },
+        "authenticationChallengePolicies": [
+            {
+                "challengeResponseChain": [
+                    {
+                        "challengeResponse": {
+                            "filter": null,
+                            "generator": {
+                                "className": "com.pingidentity.pa.acp.generators.TemplatedChallengeResponseGenerator",
+                                "configuration": {
+                                    "mediaType": "application/json; charset=UTF-8",
+                                    "responseCode": 401,
+                                    "template": "{\"www-authenticate\": \"${app.realm}\"}"
+                                }
+                            }
+                        },
+                        "requestMatcher": {
+                            "className": "com.pingidentity.pa.acp.matchers.ContentNegotiationMatcher",
+                            "configuration": {
+                                "mediaTypes": [
+                                    "application/json"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "defaultChallengeResponse": {
+                    "filter": null,
+                    "generator": {
+                        "className": "com.pingidentity.pa.acp.generators.OidcAuthnRequestRedirectResponseGenerator",
+                        "configuration": {}
+                    }
+                },
+                "description": null,
+                "id": "97f51740-04fb-4e08-9299-160850698249",
+                "name": "Non-interactive, Cross-Origin Session Creation",
+                "system": false
+            }
+        ],
+        "availabilityProfiles": [
+            {
+                "className": "com.pingidentity.pa.ha.availability.ondemand.OnDemandAvailabilityPlugin",
+                "configuration": {
+                    "connectTimeout": 10000,
+                    "failedRetryTimeout": 60,
+                    "failureHttpStatusCodes": [],
+                    "maxRetries": 2,
+                    "pooledConnectionTimeout": -1,
+                    "readTimeout": -1,
+                    "retryDelay": 250
+                },
+                "id": 1,
+                "name": "Default Availability Profile"
+            }
+        ],
+        "engineListeners": [
+            {
+                "id": 1,
+                "name": "Default Engine Listener",
+                "port": 3000,
+                "secure": true,
+                "trustedCertificateGroupId": 0
+            }
+        ],
+        "environment": {
+            "name": null
+        },
+        "httpHostSource": {
+            "headerNameList": [
+                "X-Forwarded-Host",
+                "Host"
+            ],
+            "listValueLocation": "LAST"
+        },
+        "httpIpSource": {
+            "fallbackToLastHopIp": true,
+            "headerNameList": [
+                "X-Forwarded-For"
+            ],
+            "listValueLocation": "LAST"
+        },
+        "httpMonitoring": {
+            "auditLevel": "OFF"
+        },
+        "httpProtocolSource": {
+            "headerName": "X-Forwarded-Proto"
+        },
+        "httpsListeners": [
+            {
+                "id": 1,
+                "keyPairId": 1,
+                "name": "ADMIN",
+                "restartRequired": true,
+                "useServerCipherSuiteOrder": true
+            },
+            {
+                "id": 2,
+                "keyPairId": 5,
+                "name": "ENGINE",
+                "restartRequired": false,
+                "useServerCipherSuiteOrder": true
+            },
+            {
+                "id": 3,
+                "keyPairId": 3,
+                "name": "AGENT",
+                "restartRequired": true,
+                "useServerCipherSuiteOrder": true
+            },
+            {
+                "id": 4,
+                "keyPairId": 4,
+                "name": "CONFIG QUERY",
+                "restartRequired": true,
+                "useServerCipherSuiteOrder": true
+            }
+        ],
+        "identityMappings": [
+            {
+                "className": "com.pingidentity.pa.identitymappings.JwtIdentityMapping",
+                "configuration": {
+                    "attributeMappings": [
+                        {
+                            "jwtClaimName": "groups",
+                            "subject": false,
+                            "userAttributeName": "groups"
+                        },
+                        {
+                            "jwtClaimName": "sub",
+                            "subject": true,
+                            "userAttributeName": "sub"
+                        }
+                    ],
+                    "audience": "app.test",
+                    "cacheJwt": true,
+                    "clientCertificateJwtClaimName": null,
+                    "exclusionList": false,
+                    "exclusionListAttributes": [],
+                    "exclusionListSubject": null,
+                    "headerName": null,
+                    "mapAsBearerToken": true,
+                    "maxDepth": 1
+                },
+                "id": 1,
+                "name": "Username+Groups"
+            }
+        ],
+        "keyPairs": [
+            {
+                "alias": "Generated: ADMIN",
+                "fileData": "T0JGOkpXRTpleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMklpd2lhMmxrSWpvaVREQnhiRTFhU0U1ak9URjVRbk5EVmlKOS4uLWlwODhGTUVpV1ljLUp1YlZZMldRUS52YVJqaEtFeU16WWpaSXFpLUFwLUdkeWUwZUdXZmlLTGpfLUtoRHB3UUU1aXcwSGlMNjVRUk54LXQ3OVczQ3ZOWDh2MWVjZzVhTUlSRDZSc1kwT3BHTTNmY3hFNnl0NGJUTVdBYmx1RTJfcVlWVWY3RjNqTk1PdS1wUFVoenJDMV9EcXJENWZEVXJnTXFwZkZnVl9uc0dDUFlQU3hxSHBCMzIyT2szQTZEVkJmbVQ2UVUxX01TV3N5cWkzY2k1dGlkblRzUWxQd2xaSld4U2x5VDc1OXpKR3JXYl9lUlJWclZyMXJUa0E0bFgtVi1Tc0xzMXg5alotdVlpa04yOG5QZWVGSDVkY0t4QVNTY1duRzFWYlJmWEUtUkNxOHJZaVoxbVlMWGpud0VOR3VSeVpCT0VySzA0LXZHMDloYzRuak52WnhSa1VVd0lFMWlObHFaYmVIVHpOSnBNenhkV0RfUXRGX2w3cXNkZ3g2ZHVReG9iLVA4TGVOZ2I1cHRqeFIxc2FWWWJNNFhXaFJrYVM4Vy1uczdiR3locnY5ZGVZa3RBV2VCcmR0YmprSmp4ejNiNlAyVG9PUXFfVEVLMFBreDRyT1c3MGFQM2dXVFI0Vk5pM3A5cVM1QnRpNUVIcl84UWVGdERXNnVEYl95cnNuRUhvcXR2OGk0S0h1SzlFNTVKNndHNWNDMVpscXBteVgtX3hTRGplbVhWb3pHN3BZdDdRT2FrZWZjaE9yTVBHd1ZJZjR1QV81XzB0bUM2QU10dVdqNGNTdzFzdzc4M2ZtLWpSNlhOVlduUkdKdm90VkFoaDRVSGtTbVVfVlVWLVBIdjg2eTNtdVBvalVuVE9LLUMza3Mybk1XMWRkc0x0bFZLc3dKcWN0UEQ0ZDhnU201SmxxZEM4c183QTRnNTBTOXBjVWRNUF9rWTIyMjBRN0JVcWZDcUloWHFiZDJZazR3Z0RrMDkxUHBkSUF6SmdPeG5yYXpoSHdGcHVwTGtYc05NZlEwOE9kUUw4cUZNWlROTUJHY1Q2ZTJxdzNGX2gxdmpTTmdMVnFyeDhfRVVyUVZBaTh6ZDNqLUxXaUxqSlFseWNXYnhyNElzSmhiZW5YYVowc3V3VGltc1Z0a0Z2VXdKWEhUdVdLdTFld3pYNl9DOXB6OG5kODBKRTBIVDFIRVFyYUxRZ0RyTGp1V0VjejdkQWRRdUhlNHVSdDgxZnVyRWRqVHlnUi1MdDhyaS1PakFONmFna3luempzUHd0UXhoWVdVUTRZbDVHbEFHTW1WLUU5aHZsS1MxYlgwRWNxWUQ5M2VKLWN5c0xvd01mZlA1b2tyaEZleHFxQmdvZ2lkWnliandFbjJkUTM0bUFDa0JwQVdMc3c5d2VmTkVLWkNhVkp6bjhLTklqLU05ejROTFRGQVIyVVkza0FsRUNaaW1qWFFZRmZsRmJtYm1EZzl0SXNXdE1WNzh4R21GQjBhVG9BbFAtTTZnMUczV19iay11Z1p5Smt1SUVONHhuNlJ0MDMzR2RuS0JqbnpMQVJPSXhmTlFkRVRDSTlxaTFYcFdmSndFcXNZalJIRkExMklpS0FhR05CbGcydGpFOWRtRkRuX1U5UldNaFMzSllxaFZDcjhKNnRfY1BoNjZmcnpiMVMxaGJPblVpM3BZX1BSelowaFBybDlzakhhdXZLWEw4ZnhFWTVhUDVGNjhZcHJzdG13aFgzTVpkTUVGU0N1Mk4tRUw3SktMOXUxYnhGYm1iYVRYczJmajJjZzVfbllrTkk0eXEyZzhNMXJhbm5JbW9PNkFiRlR1UE1OdGZ0RUJKRnNfODQ4X3haV3dKenlmRnlwUE5BVllpbUFfdXlaU0Q5MTBESFZwMDZaTWFKMFltX1NwaDNkVDNfcTNXOGZTQ1VreHdVck5NeFpZN1V1RUgxU1hFYnVUUmVVcnhJcG5GUko2bFl4anotQkRHVkZTYXBnTEZ6MW9hdzdSRUt4RDJiT0RaUnRFd0RQdDJyZkh1X3hBSTBWZzlwbzJ1WHN3a3VDdzNlTzRvUmZsRkRiRFpSRmZLNThyeTdGNGtJM3VKWTdZS2NXLXUzLTdtaFQtQWd5OXQzcG4tZ3k5N3NteUQ5S2l1U1FYcXJ1czFKZXVWSm1oSU8wSUxWWVRSUEl4V2NpOVdIdnZQT2FOVXd5MWZENGd5MXZwTG9YSkt0dERxX09nLVFUa3kyVC16ZXdSNUt0R21LeTI5WEktb2lYMEpNLXJGQS0wTF9Gc3FzQ0g3YTFmdDB3cEUxMGk4Tmt6STd4T1pBMENveEpHT2VhejlLSld1Z0w4TU53WHltajJkVVd6czhiQXZsbEdUY2hxY0RyREJ3UUNHRlNTQURGT1h2bUNaUDRlY0E0STV3WkpKREFLcXRmN1cxXzN0VHEyd09GQkN2UjB6b2tZRnZ1cy1hQVItVzdyMWlFdXhCS0ZuREpyQ211ZkNPeEhHOFREcFo1UE1HeUU4RElTaUNPSElvWnloN1NFeHczaGs5NTRBYW4zYk8wY3ROa1BFdVQxS3hTNi1ONFRJekF6WXpQMndhUTlLSl9uMDFMREl6MkdLRVlMZU5mLTFONW9XR3J6ODd0ZVZ5ZVZYSzdhRGJ5NndRNGQ4ZVZDbnpxa1NKbzE4X2hhTElIcWc1OGc1Y0RrSFMxaVlQZTdSZ0RyU2oxcGlFeGJMYTNSLVRsY3Y3NUdWVGN5M1JlOTRUREc5XzJLelZmNHNPS3pCMHVCdTNhN2xjaXh6d0xXSzlQUmxoMlNoSGdib19YSUVNbTZQMlpaYWhuSFVXUE1mSy1PWDhrUjEwWnZSNjJIQ0tpWkFfQnNsUjRwSE9BcDFodVJNVVNnZ3pWOXU5enFjMXRoUUxIRkhHOE1zWHEwbUJPVV9RMm45UHFvclFXYnc3V1JRYXVnUTE4dzh6dVJpMTFicGxTcDJkS0dTVk4xUFhRbl82LUdtaUZaclNrbkdjMjZlN2hSV19RVWhfcnoxNFVvTVRJMlliNXpNVVp5Q1IzRmFwbkVxZUlURWZnQXFmTUdHNm5RcGlPVWEtLUtvVGsyUFQ5Tm1FbnhJdWtsYlBQbGI4YUxCbU1VYktQNDJ3RHI5T29wSVFobkM5OEpnUC1PX2lWMkVyb2x1Q3RiekIwMDdkZ2FtSVc1eFkwY0RyM1ktZERQcWVEWHlpOU1KU25YcHJFT3l1bFNlQWMwb0lhQVdjMjBKOTVPTTBFdTdLci1lQjBfeWJXRGlOcVFCMjF4blViNzdIZy03eWQ3M19WNC1xNHVUUkZTb3IwRlJEdXc5OHZYWnRxUGViQTVmRjlwbHZVNjQ5clE4eXJFejlMLXFnaEdFRWJKM3ZXUUYzRFllcTQyT2VYOE4xeG4yaVJSWVItaUVmdENZdVR6Slo4TUVfOFllN3pLd25uVkxFS0poRkJnaUhtT194X3gyVXlNNXVZY2NjYVlUMlNWampucVNIVmRzZ1RDbmEwWHNLeldBOWZvQ2JKeHpsOC1jNmlRcWZyZDdaSGE5aF9vaUJCOG1GdVVvLTFnLTJkanFqeUxqSzY4T2kwSVhNb3YyanVoZkhEZU1rd3FRNE1oMS1nMFdFbi1TNG1YUFl2d0RpUFZvOThzWjhUQ0pGQ2xzUTJSTWlwc3FCaE5URzhZLVZaMWtLTUNsTDFndnBUV2dOa2xiZDdwQnVYeUhxVTlSVlBhZ2U1aDBzOWthVEdEVjVyTXNwN3RRMFFfcUZ0UHliN2d5WFJ3azcwVzFLVHFjTm1SekpteDJPWmlhZjhXU0FvdXlIalRCbmRweklFRkV0djhXVHpQRjFpS2JXQjJZa2txc2lDNDNQNzFpRVZSOWZLX2VHaWhxRzYyT3VrTkJiMmtlNmdzdXdpdmotS2RwbmM1M3Z3OW9fNmRFTnlTYUtOaDItLVlMeThhRDlsbWp6Rk5tc2VZX3MxRnUzeDVZX0tJaFVQVlV0REdhOVV6YmtxQ1hvS0JzMC1saUFJR2JkTWs2U0EzUHQ2VEM0ZmsydV9SbVR0dDEteXc3VkZTbDhQcEc1VHNPTmJjOTVndzRmSVkxWFpaOGNHTUtLTmlueVM0RmItRjVobEJ0SmdlVWFCeWh6d2tmQ3hZTUg0MUdrWmdLMVV6TzJ3TUNvMndHM3VmbExIT2w4Wi1OdUlWbDBMU21Ld2pMZTVJbTZLckZSU2tQVEdVSV9BdURCTVFjWWNZVnVmdmlrWC1adnExUzhwZ01Zdl8yTXpDWHJaWi05ZkxZRXNWWHI2LXQ3S1dBakpudFdTczR6VFZhODVkTFhYUmxPZlVCR2ZvV1IwRGFycFFtMi13cjk4U0QyZjN6N0JlWEJ3dDZvNlZYSkRGMkFmSE9sbVpkTTNQMzlpWUtXZTB1bjlRTW5jQkxNVUVjWTVOZFN5OThVdS1kdG5CQUJXZTQ5YlpHalgzS09aR0h4UTVyaEtZZlJ4VlZxU1N1N0NQejVDUlA1MmNrSUtFeXJFRktHdHpZQzB0VnZLc3BVcHVaaDdpYlJWZlVVVW5zNnZSV1NHT0pYaU9wQ1hJbXQ5VGxsR3AyaFJLS09oU3gxamZ5MFFCd3lldnhIeXYtSVNFNHhuUE5sczV3N0MyZk40Sk9DYk4tdXlDU09SRjdMdXdxbHJTaExNVWQxX010cEE3TF9PQm5vWWF1N0VxdTlxd3lsRnhTeHcwNUJNYUwtNVk2TlZnakduLVlOcFdnaDZsS3VBYWh1N092MUcxM3d2Q3FVeGdKcFNxNm1za0pCY0NDd0ZJSzZlYy1IY2Y4NEVheVFvTWhkOWJTNDRpOUVCR1RXUElfYnExS0w0czFEZ0NreEZZdUF3b2tCclIzOFNHYkguUG5hZmI3cVdPOHEzcHFuX3ozMFZGZw==",
+                "hsmProviderId": 0,
+                "id": 1,
+                "password": null
+            },
+            {
+                "alias": "Generated: ENGINE",
+                "fileData": "T0JGOkpXRTpleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMklpd2lhMmxrSWpvaVREQnhiRTFhU0U1ak9URjVRbk5EVmlKOS4uNU1sMFozRHBpQVN0b0FaMUJ1cm1FQS45emdBLTY0WnhmbXkzNWozTDhiZ3BXX3hpcG05M2xObmNIakhTdjk1SzFCLVF0bDB4SmRiZFZwbnY1MUtfaHVhOWxEbWhCS05lQlFiWU56ZVM1aE52Q0dmNUZ1QmZnY2JUREczX2U5MzNyRF92SU0wb1ZROVFzMmZwcXR2SWt2SGVxdC1yWl92Y0FteVV0cWlkZ05tME5mUDZidWJJRU1LZW50ZzFmLUQzVHRaSUxfTnJTcXdmUTFjN1ZYVzBISi1mQTdCdHJ6LXZ6bXVMV0hGQjRRWnRzOGRVamxnOGlXTDZjQVF4a091NHYwWXdsMjRybkFaVWtWbWR0UXdKUXhpajVHQjRmaVpBeWVId25peDRaUDRVQmJucEllMzdoejF4YTVNaG55MmR0TmtxeEs0aXJ4NjBhS1doR19YNjBSRWNiSEgyRk0yaUlXV1VGZWRhbWxRa3JFLVhHRE9DZHNzZVVjTnV1eFBRemIybXdidFNKVjVKdkJlY3pUcVExRlVzM2VUM1NtaS1mNzhHTXRSR0FTYjRNbUg2ZnNMbnRydGZnUjRkSm5OSEt2YzhqemEwRHR0djNub3kyeFR5TmxLQlRLdlJqNExrWnU4bDZxUmpybHlsSWdqZEpqUUE3emo1YXZlY1ZIcmpSMHdOYVE3Ym9kaGNrZldBT29rb1p3V1hkUEx0TzZLRVFSUmgyb2E5LWtpSFYyRXNjQTdRc1l0ZlJ5SmZFem5aT2hNRWhDS3pmcUtQemN0bmVlMHl5Y3F0RHRscGxUUU9qUWFmNEtIVW1HbHBNYnZRZ3cyVEUyNERJQ0VmRjlPS0tzMUpteEdxZHFsbmw5S3NhdEI4aFN0aHJGbW1MSGJ0MXB5Mktla0NLSXpQakxaQmwxcENZS0VodFdnZjRrWF9uQXktbExDRWFzQ0k5VDROLVBFUUx3YnlYaXZkZzMxQ2ZxcHdSRTFFcENvYTJqYUxVLWN1VGZ3aTV2ckxxUmtNcGdNUWMycnl2NGVzNXAzUlhVMzlzOXM2cjh6OGdFdXVpN3dpTHlNdE1aUmZnWkFSeE9Kbk82OVBNdFZ6bFRfMmJOckdIQUNQaFVUdzFYNHZKMFVCc1VoR3U2M1ZKektvWnZSdHVtTDFQamJCQXV4VEE2d3VPYkVvT0Q2SkRXaGV2TEZTelZDalFkcDNSRUtZOHNORVZKYVh3ejdkRjJJZGRhY3lYZHJIUVNPY1lmUWZYTDlaRlFvcmkxM3JGVVdRLWFVbzUyTlgyV3duSC1Rc1VQQWpPWS1RMmZNWGo3UE0zNmhPc2d6RTBxYlA4OVNIbkU5Yy1NWUg4VXpnWG45WXZFM0JSYTNOYnk3czN2aTF1TzNkVUI2aXF5dWxudVBhNDh0T3M4eXhhcG9Uck9uV3BNVzIyWXJqbF9Ld1EwZWpMUTVtZ2lwZGFjcVBhZnZ4emdzdEgzTGJWdWxNZmVRa1FTTi1TaXZiLS0wMFFtYm9WdURwUDd3QmJJNG9CUXctV2VWSThWT1UzR0FvMDJnUVBkd2hOWmxnYVRydUJzM2d3YVZkUUFIcDdXckNueDhEUnVvMENaMFE2U1hKYmtQWmV1VE9rMW10UmZWZTE3MmRseDliNjlyQ2V4U2pTUnE3a0p5MUdJVzJpeXMyOWpSNHU3d09nckZZdnZPT3Vndnh2d2lMZkR3N3E3WmZaQ2tpeldEUG96Q2dyemg3azdJQVBmVU1zeXNNZzNVOWFhQjhRZVJMVTVYU2RLN0lVTFc1a1NPX2dGSVVkMmI5SndVdjd0MnI4eHZQQ0FwUXVIWXRRRFFib0twcDBEYndGZjhUZ2RfWDI2NWdZMXIyUVJkWUtkYzNTbTRPcTAzalpLbDQ4NkpyVHhreTRkU1JTdERkMi1fZWZvbXhOZkV6UVRwcEZaQ1FuSEZrZUxWalotUGVmanFVRFVkZ1V1S3BDdzMxZWg4elZjUlg3dW1wVlZ5LVVWWjRzT2dIWEFMQkxtdG82cEk3TE9HTlZ5QndGblR3VUdpY1FvYk9ZcnJmTndRTEFXYWVwcUhFS1BOemVpT1oxOFo3MVlOMU53SDdwbncxSjkwSEZsN0Z0akFCcWp3RWg0TVRhRXVuRzY3dXZmZllyamFONzRDTTlRQlVsTlhDSDJZWmJVMmY5b2trcjRSeVFzd1diZURhSGtiTnEweUl5NllQR1hBeFd5cm5Za0IySDNYNFo3alRaTTgxRDJHSTNpUGl4MndlVGxrR2VkTDNFelp3cndUM3VNRGpHd2I2ZVNXVXRqQklFYnhPM0Jsa1FjSTc3YXgtM2ZrNVpwWjZuU2p1SkMyWE5xRXRzZjZROVFOVVJWOWVHOWViR1FweDdHeWtmUVZya0hsM0xoUEs5N05xMHFMWWVtQjFKV0lhOER5VjVYMXlzLUd5RmYwcUYzTFZvaUhlRVBfZy04QlQtWVBWdzAydm5nSlJUTC1TZENhNXNBVFZ3Y0xoMms0VDU1eHliYzRvWVVDV2FhQno1QjBfcnA1WTE4ck95TWlYbnRzVWZGV1ZXRlNUQllIXzNVSHRpMnRLRWVGM0VLUU9zZzhqRFJEbW96a09oTy12a09RN2FzRW9PUnVXb0JaNHVGSzgxSnpCWGVOMjNPRWo5WXRlVmJDeHpWVktkWUFabHZMSXNUa1VzSFh4c2JuUkRBTHM2c3d3UmdZTGp1ZFR0OU11S3lZZVg2cGhlZ2dKT3gwWmNYQmt3ZGFEeHlxWTQyMC1JQk1teVJIdk5hdDE1NTZDNkthdFpPV3Zab0YxTFNXYlB2U0NHUi02dTdaSFdwU2E1aGlPTEpVeVB2Wm1fWXRaQTF0dkl0TEE1SHN1djRueWwtVXZmM2pXa1NkUndPWFBoeGFBNWhkajUtakdCTVpIWUdXNi0xVUY4Y2kxMkQ3ejR0ejJ0V0JZMzhnTHNCUnBsVWtQbWI2UDh5R0ExS3ZXcVFjY196ejl6OWUxcGdBY0NKaHVEQTZ4T0pYLUNkSDFNU2Y0WXF1X242clRlbUg3enNuRm1XTzZwUFNfYkRSUXZrRjNqVFcwOEJ6TDZPQjMwZkhOZkZhOWY5eFhwZFFWOENHczJEV0JzWnYwRnVQYUVEX2ctTE03TkN1SlF6VzZhMEV1NDl1VmVpYTNSWFdEMy1ROEtySUlpWndOTGlpUFJDZVFFSV9OTERKQXhYWTk1ZFBlRmhQN3VIMG1rSmhvYW5zTG5CWDg1SHBXWGRQUHlpWVMwSUQ2V3NjNmhTU0hxWWgxYVN4ckMwUlhJckdvYWQzbmFRR19Vd3dkMXNhWDh3TDVjdUNWZU1Ua1FyblItbno2OVVoYlZNdkN0Um8zTjZXRmJKaFNqSHlobzZZZUhNTGkzMDZrQnFSOW9Ob21BMHE4d1R6cFFXWUh4bVUycVRUQndsalNOYkRuWWs0ZVpyckdtYjdlWDRrX1BYWk9tdVI2MEFIam0zS3NoQ0ZZczg5eHdJOXlTYVJ1Um9QRFhqdUZCb19vWk90eU9yVTdyZUZTSm9JbWp6NnZXM2lEdU9rZ0x5VjVkTnZtT0dMeWJpdk1LWDZueTg4c3ZEeDZSLThWN0laUXNsSEFzWVA3bnFWYnhfblNNczhoam1NUEYweFNlRUNMN3N2ajN3a3dtY25LNmJsTWl3SEswTVFyUmNHWVJRaWRsMnJ6aDd1VGhmdGI1amU1b1d4TjRRZUVPRFNfa0NGTUFPWEx4VmdpSmRqck9aTmFjNUF6RkMwaS02RmNmTTZ4bnFjUDluN1lFSF9vT0FMYkNmTFhWM0ZUcEZfWXIwYlN1TG1JRmFQa0hWV3FYLXZVRHZURUxsS2hoLXowRVB1dTA5YXN3a2h2cGQtLVMwVGVIRTVNcW1rNTJ4MWI2cGFiVm8zVEN1LXNCWkZCOUlNVk42X2JxczExUjhzMFZCZmVhZzZOSmZnTnQzdEhDNXY0Q3pwZnVfcmp3Z2RpSmZPcnZQNXRLUFJNdzZwd3NLd1Q1WUhKX0lUdEdId3lNazI4TWdJNGlLamU1NjllVHZlTmJjWlFGN1hXVERIenBEUFFCMzNYYXZmVmFwSWNvRmg4RV8wTlRMZ29QTUoxS1VmMk85c0hKb2UyWENXTVMzNlU4V2Vwa2RKM0h6UEh0SHU1elR5cTNuR3lMRUhwSnZGS2otam43NGdpTlBiY09nam9Gc3FvUkJlYUgzUjZFX0FYSndNclFuTWpoRUdtRmRvV1pLM3dsMW5aVVI1UTlfWWNSLVI5b0NxLUwyZ2REV1NUa0VBRkhkZVNVb2o4aEdaZl9DSk5qZmdpZFBqX1UzOVN0dEdJVnVvWWpZMzdTQzBTNGxINVRuT0t6a29xdlN6VFRJdUdNcTJyZV9IWGs5blAxa2ZkOVYyS2tucnlLVWdnZ2kwdklxR3o3Tnl5bUFuQkNNSlI5UmVJd1c3cnIwQjh1Q0hkVDdMRk9RNmFmNmVnOElnODlSZ1pjSGc4aEo1S2JoUjhTOWFaRHZQeVlqbVpGNUZXNWNmSzctU2c5cEkzaFBGRnFiMTRfR05xd3N5YThQWjBQODVUb0tucGtZTEpPLUtMMmhCOV9Wa3AxT1FaeU8yTTR6WFJaX1I4dEduclNuTUs2R3RfMGVtOGZkWEJwT3B1cGV1a1ExR2RzSjNNclI5b2N3RWxwM2RjUVhJb01wNzdEMmdMMm01RzlKMEk0NFJuajUwbUYzNXBkNjFCNExiLUtGU3l5WlN0T3ZWNTlGNVRkLU9ZN3BXRTloU1BuZVk4RktVY2N2Q1RZQl9mOVF2ZDNKRDB5dlVtZmVrVU9KZGlqZ3RvaFRoQVFMWmxrY205UUJwTTNiNWZFUzUzaVZNOFlERzZhYV8uX1RXbDJMMFFJc0hzdW9RN09kSVpBQQ==",
+                "hsmProviderId": 0,
+                "id": 2,
+                "password": null
+            },
+            {
+                "alias": "Generated: AGENT",
+                "fileData": "T0JGOkpXRTpleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMklpd2lhMmxrSWpvaVREQnhiRTFhU0U1ak9URjVRbk5EVmlKOS4udTRGOUVWQlZxY0RjVEw4MExVdWtQQS5zU1dHVk9xR1VfRUp5OWtQbmhEZDVrMkg4MkJQNVVzNkZOcGpKYmRXYkhpOUxIX2duYjFSOE5jYU9ud2tYcnhRY1Qzb1E2S1NnQ2NaOXgweFFYUHE5RFNoSnRnczBBOFdzNVJlRUVlenZzamlLRzRTLVRzXzU0WE05VzQwbGhWZW5GRUNGbUMzUWJERXl1MzU0WENlVmtvYUk5emhBYlA0QUVubF9kQ0xTN0h5bkFVVk1KTzRLM1ZoT01VQUFzamtpaHJJZ21tcDF4bF9NZmRwVDBQTGZ3ZXkzYkZpWnpySUVTS3JNbjdhNFpxMXFwN2ZmY3pZRHhLVW9OX0VScnZ5X3FwbktJNndydWNqRy00ZDVvMGxtVmo5LVFkTFBGSGdhR2pybFZPMlZjNndNUlBONGJOTGVXbTQ0RFRVRU1HVVZLeVl5Wk1QbmRNSkYyaGtmZnlVY2hfVTRNbGlhT1FuWVFHeGEwSkh2OU5td1Y4WWhKUEhabUsya3oteWQyRExpN0xTb01wdk9Za3VDWEkyN0h1dVU5ZVhpTk0yQmlFek1IRzRDbFFoS1BBY3A5RjhXOWpvOGhZUWE5dGhKbGNyRmdNbzE2ODhXdzhGTHJtNndQNmtSRmlsNWZxbGd4REo4QWdOLUVhVk1hN1NUR0FGLW9ubDd6TjY3c1B4UXJhZzZ2VWhIUDRJSERpVk5pOUN6aFFRVzRla0hhallocHFqeWFISm9XSjlfRkhPaDhCZHJKM0RHVUxRRGZIdkxKQUU4RlpvWlpuUVVvd1hfRkREV1FpWHYtU1k3OFFyME94SVdIZUhhUWx5NENYMG9DbG0xQXZEeXh6MmRpcWNHcTdPa3QxRGRwbnVGeDNZQUlNWUpGX3RiTVBrdEkxQlB6WTFSVXgtQzdsSk1SZnZCX25vLTBaS0FicTFzSkg0OHd4YnZSYXplbDN6MlRjS0pYRFRIY2ZqYUNLZVVUVmNKTGxsalZOVHJDb2FBWkNaNkZUQWExbHRyeWlJYUJVZmh1OVFwZlBITUVZVWlKZFV1RUwwd0FJdUIzRzF4ZHZrbmtDU3VJdDRyTllTT2NiNm5qbS1TaVBNbGc5MGdDa0pydG9KaU5QWHVGTXRBWURER2JZUzdxTXlMQnF0VThuMExja3lrb3I0cjRZNnBablNPM2xxcXRoZG9odU1DV3pkRVRaeWpiekd2bXJCNWZqMkVUbjNmRTFVRk9XM2RxUVVRWEpKWTNTOG5KX0RYck1YaDNzNzBCUVcxZWdZUy1SSHVNZ2s3QW1wd3ZfeGkzVlhEelQ3elRDT0k3Y0Nwak1uQVBjNUZ6SmszWTAyVHlvNm9qVU85cE9nX09ZZm9ZYTJORWNYczZkcnpJTkRKSjJRUHVBTkc4RnJwWmdYUEhQSDlfbzNYaUhJN1JTM1ZkaXg3aTBXcEZSVmxyeWctV0VINkFkUC02Qk1DUW1DS09lVHJBdDB4R1JkVy01VG53YWNyZTJFWUFjQ210WGU4NEI5T1dFQTZhVGtZUXo0MmNoal84YTlOb3BNRTFudWVXREg3OWZnZFVWeF8zYk9LZHI1NW1UWmlpV2RxZTVaQmhKWThLMmdrT3VTaEthelhHRkoyM29kSjFnMGNUay1XSGRyVDl1YUg1SjByZlczb1RFNWdHalhqSHJLVlVvb3ctZzZVTjA1TlNxU0NUTzFvYS1tRWo4WXMtTzB2U2lmVl80N2dSSWRISExuRndmX2lmVGNHS1hVQV9ZMjh2SllCcWVNNG1jVzl3ZFp0RWJKempyZ3FHanI0dHZ4MnFuSXl2SFc3d05adTJZUXNZMENZZEJscG0wVFotdDVRUjJOR296S0QzVE9uY3RzUkpVQVRIcFJlTDF2eF9qekFUT0d2QnhNVTA5SzMwa1MzNlBEbmd4c05TOWtoRU95RWZzd2Q1QTFRYll3MzdMQnpvbEl4MVl4TmJqZ01PUlltMmdBczZLOENwLTluN2xTbFdJcnhyYy1TemtxZU9ZNGgzSmtCa0xaRDN6LWE1bDA3LVMtU0I0MDZlTmZKaHhQZGdLSnB4YzlLS1o4dnFRYWdoRGxMbF8zdF9GT00waWR4MWxmVDdNNWJKUUpQYW1MSlpUZTRyR2phNHdsbXpHckw5TWFhWTNJcTFXYVdBNHdSUHdwV1JkMmhrb0tHZ0JLSEVaVG1XaEV3eXAtdHFoSWFQTDlaMkxyQ1cyNGxqX2JTTVZ2WXRqUmVoYWdBNnN4WFN5NFl0WGxSU2NRM2U4enk5aDYySUM4dGdKUk5xSzJFUzdDOVpYUTl6N1pLNGtPZ3pVT2lOalpmYWhyU1NPRFlxamZhWkwxNnFwaDlBQW9Ma2V5dXVyTUNnWDVLZ2dHRkFDamN5bGl0LVpRYzdORmxBVElCSk84ZTV1V2xseFVpdHpMWDA3QllWOHJlelJPNThzcjVCSUxqSUl2UHdtdHpBM09yMV9qVC1fRk4zMHB4LVAxc1VXcVljNWRhNjRyOFpURjNHVnJMclF6S1BRZkdZOW9ocWkxbzNYT1RRQ3hsenZpaW5oNnplWTd5aklSWHkwUmEtclUydEs0bFdqeU15U0UyTzFkLWdZV3EwMkNycVB1emRKQWY4amk2akZDdkp0d3RraHZlRkU5bDNVU3BBOGZMaXZYTFoxTUZDZlF5d2t6dnBhTEhsMGhsZmhIeXBEOWN4U2MtRmRoSUtUTWFCcWJCc18wQmo5dDdwNjRUS1ZIRmFOMllGNkJlY1RoVmt0a1dESmhxSm1QUjgyMS1SZ3VaOVZhUE41SHpOcmFEVmJDQWhEUVhJT2owdkdFc2c1amxiem4ycDBSNmRtdHFQTmdXZC1ieXN6R2NhR1N6NzBPRDVsX0xTWjI5ZGdEVk5aS3dIS0FudEhiRXJmdVJiZkY0aDhJbzlXVVBRMDlaNjVyVDJtN2l4aU9FYjBOZ01KekpLVlJEYnlsXy1oeVo3TktlcmhudW5CNWcyemxrdEptVHFyQUh4YU42eFlrenlrT19NdVdYbTFPWFRPM0loa0hpa2d4eXkxOGRiRk9fQkZWbzhaTTM3QVVhQjdlU1NDUUJvQlJndWpYY2pzNjZaUGhYM3VYazJGVkFBS3JZYTB3NVlhclk5Wi1kaFZLdGN0VDh0QXp2eGlpaXZpcnB0QWI1cGNPZ1JnMnNlcUNhS2U4TEQ0Wk1iX0NTakh0Qm1ySXI4cV9qQlNQVXZmZDllUU1wMTREcUMxT0dFaGRHeWJ1ZmtsajZOd0hjUFhGMlRPOHJMczZ0V19seWo3T1UzS0twWTRUZGV2bExzeHFGTEQxZnRZT3F5R2lQRWFtMEQ4MS1KcUkxSTY2a0VOY2Frd2kwMnppWTZyY09oWDlFTTQzUjNidTZEd1hkNnNHTEZmZ3N2cl96NzR5TnlmeWg4VUIzMkxjNkdKMkVXSXBkVUpqRGEtMHlWaWVJaUszLUpVVVlEeDNkRXhacXUtV3VTWFNPMW95MVFac2hydlcxNF9uQ3RMN2phNmFrVUlFTG52MEtqMnFHVnRWOGFxQXBDUE9HVjItdmpuVnFBZkxTb3Bzd29WeUhQc2NFekVyamVGUHAtX3VvNXdGWUx1U0JBTDc0YW1FMVc5ZThGc0dSWkFVWHFzZE02ZlZpYzc0bm9PcjJ5Mks0VUp6aUZ0dmx0TlpjcllGWlFwUjFMOG9MYWoyMm9KeGhxR3k1N0ptZVkwMDVTMTBWT2U3OURuMWQ0bEQxUHJieENSQkpsTnhiV1VlNlZqc0RjbnY3NmRtbEV0cXNXRC1VYmNva25IUE0yektZSFFEcWI2RkZCNTVkaDZtSEhOZHlkbWh0RlVmYjVQM04wQWtJSGw1dnR3T3prZXVFa3ZWbzNiOWRzLXdlcHF1eThQbDRCbDB2X0oxWk5aZDJmaXFfcU1EZFhnU2VsYnN0NlRRNXFZNnlYYUdJRks5YlFvNDYwVTFwS0QyWnc3U1V3WU5fRmxQLVhsUzlqSWRGbDR1ejctTnJiNV9vcjdBUGxuOUFjMGJ4Y256YWtkSzY0TlFQX2JDbTlPUWlLdF9kTlRhQU9lTE9vRU5zVk5JbElaQ29XbmQyV3V5cmpPdUFLb0s1OElvVTNSMnliR1BWdWJTYW1hVFA5WDUwdm1MU2xiMVAxOC12MFBvekdLTjc0Y0xqU3F4c0JwTmNsWG5jSHNLRy12YmtYenJDNTJNTzdCTmduS0YtWXcxSVFCWFMxaW50NXhxQ3NodnRDVmliU1J0bVZzYlJCdnFEaHJNVTYwYWkwcFNpQ2d4VEpDMEc4NjA5eDBPdVViYWlSaGttRzBRWWxoZExrdXRmVFFiVlZkRnB0bDhYVkY4QTJUc09KSzVNTFBZQTlKR1JubEQ2azFLa2xUQWRSWGpsXzFfNEtOa09pdTA3MTZfNDRQeldqUThxelVjbHZwb3BrTTdZdnZIam44N0ViYzZtVk4xbGYtR2JNcG5GdnhUa0RoMGZ0WVNBcFBPZWd0cEMtYlVlUEF2bmRjbm9kWVI0Ym9CblJYV09tVzVvSU5iNk9OYk1rSGhjcFdMM0VuOUYyY3FtdVhqaWNHZEYyenhYZmxJX0VYM2ljOFlaR1pGZkctY09SRVhucGtfaFpzc2lhTVFDdWJPNk44dlAwZVhWWVdNSXV6S21QVkFBRjh6SmZpbmJEcXp4ZHlPQUFkdEZma01tRmwzOGg4ZUJaZ25XVkhZajluXzJaTjQ1R2FBRUZ4R21zSUNxQ3M1MTJDaFNDaUM0QzVmcU9zN3ZyX2F4Q2lUaWpaSUZwRF9NQmRIZHNrNlVLRmEzTFRxYWtveWhya21XNUdXMm9uOXhZZmRfVTAtb1hzNUdGNnAuSlJzSHBWT1g1RTJ3OWhwOU1PNVZYZw==",
+                "hsmProviderId": 0,
+                "id": 3,
+                "password": null
+            },
+            {
+                "alias": "Generated: CONFIG QUERY",
+                "fileData": "T0JGOkpXRTpleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMklpd2lhMmxrSWpvaVREQnhiRTFhU0U1ak9URjVRbk5EVmlKOS4uN3p2blowY1RLTk8zSWI2TkYzNU9ydy5QMDMxbVBmWnZWLXgxekwxVks0cm9mbHo3Q3gzWGJzeXA5akRHVUNtQWJPMWt2SG5fVEt4TFprbmtod1NucnY2RC1fc1dBLTBSa0FVWmJaUHg1MTdLdmVJYXBzRDZHWVZhSjYzaGdPbV90NXczRW52d29xU3FDY0RGbmFOcm1nQzlJRHdOZFFfSXA1T1ZHWVFJUjBhMjQ4YjdYRHJpcXBsYzFVQ04ycVJzUUpkMGxBNnhsSU9FMmpsQTVzNUtzbFBlRnFVN0tvQ3I3ZjRPQWlydDhlai0xRXI1ZDN3cTJjQ0pOMW9QLVBjamFEUXoyRnVZMG4yQ3p3cTBPb3JBbjRuRXFDRUJPa0J2SnF5Tk5VTzI1cEwwNC1Lc2J1YThmbUFzSldxM2hLc0FKUmZsQ2dYWkt0Mm5ES1RHcThIbWk0ZEVzUFRGVkpZUnhRY0lFXzBid2l5dDQ3S045Y0xUOTA2dnFFTndtUFZjRmlqallLMmkwWXBWQklsOENHY1RPRW9kRFBLbTJUNFhJejNPcEpfaUtRY3MzLWdPLXZES1FNNmRlVmVlbDFVUkdBVjgyTzhITXJLT3NRMWkzSVVnTzdocEdjMzJjcXJSUmVpZWFfYWZzN3g2ZEc2YUEteWJwSnVOempQWG9yM0hWenpwYm1ZTDEyUTBZWDdqUXp2T0lpREU1bTItNFg0U2xRWDBjbDVPRWI1ajlJeXJOUzBQWHA4LW02T21KanYxMkFHX3hQQWszLWEtZjRGX2JRY3hMTlBYazlrYUlqdEFQS2JYeHlGNERxZnFxODVXRDNxYkk0M1lTaWI1Q3l2VUIyUENYMXU4WTBRaFpIZTF0ZWxvV25vZjg0UF8tdDFjdFctNHoyUEh6blhFMTdfMXRNaXFKcFZQRmh6dktlWjgtQmplVFBpZ0Z5RGRaMXk5N0ZPSWNNMkV6dG1tT2xPaWJwRWdVOW55RWNWOHVRbDRnZ2w1TFBuODBTVzNfTnNjektsQUVTc18tQXYtUkpIOVF5LWdEY0lNMjFiaW12RVp5SkVQeHdMQnI1QjBaNXd2V0g3ZVREeWVvS3AyTTRDZTAyUVMwVEFOUUFoQW5uS2hKcEt3eDg4QVI4cWVKVFNYQjJqajZucFk3WVBkMUtpQWRVYlg2cHQxdkpEd0xMbnF2ODZlSUd0ZURCSFo2SE9kYjVhZk1KV0MxTjRxQXJVR0lSWldDLURjS2dhdHJxTEVLSEZSWk5NTzU3S0ZfQ2dEN0N3VUh0MkhwRnBpdmNNRll0OW9qV09hbEFJcmhmRVFETkRqWVNXazJ6anJkbUFnclhWY25XcTZUXzd5TU5sVjlfLTFNMk5MTGdfYkNuUVhFXzZzVkxuUEV5TnowbVFjVi0wQlNKV0Y5dHVhalFzT1pPN3lrVXdaNms1d21jZFN1YWd3azg1bXJXdTN3YnotVUZETUlBVGgwZWdUc25DaEU0QkN5MG1fNy1jaUdsMVBRMV9VSkliSzZsOTNPQ0RRTlFuWXkwX2VmanVqclhEX3Nfak1KcjNuZ0didGxmcmZtck9DLVVsZ2RLZGItVkMwdGtzVVpybi1kemxMVVZKS01KNUZ2bFh6dnlJUGlwanlTS1k2UnREQVRKa0J6REdPTnpfZ3c1blczenhKM2pqZFJQdm9GdjZOcVpsWUJ1NkJ3SmdnMHZodjQyejRQbDRDanE3U180ak8xX3cyM3hsX2RmekNVMVVsMENQMDZqdGlBQVdqQ0FTY1JuSlVjUDdZNWpjR0ZNcGw1MGFqeTF4QW1zWjE1MVBib290ZGhlZnlJUllCeTQ2VWppQU5ycDRWZnVxWnBsa0s1MGNoY3h0MVQ4WTlZc0xYY0FLNC1fVndqaUxSWXdScnhpLUEzVW5UaVFocW0zZUxTX1laSVJtRE9yc1NIcjdacGt2eGdPc2JpWW1UQkN5Y3FyaUptbDlmT0JySHlOTENFb2t0OUtMUkF2Wm1RSVZHblpGX1YtMU00dmdPTWZUdFFfUGMzOTZXSzJPck9pbzdRcjRldGMtLW5vNFVad2VFODd2WVJ6ZG0zdDZsU1hMUmtROVItSk1CRmJ5WDBwc2dtdnhHWU9TWVRndlljSU14aExDVVZ3X0xqRmY0aGpuYXdHdHdEUXo4OHJjQnFZendwa20wblZVbGtpakJnN0R5WV9PdFB1YndrelhWRHlIR0JHajZFNHV0R2pDNVN1WTJVa0FQbXBhLV9ad2hfaE1RMUNTemltUmFHSGRueUgxMDVRSVRSQ2J1SkpPaTVUMEhfZ1NmbFUtSWtvZ1FNLVJyeHB0dHlRSDE5cXpHQ3BaUTVfazZBQzREdC1jd2NNUk9NWEI1bGl5UDE1cFVNZUREUGlxdDZVZU9DU0ZhblhmN3l1R2hnalpEaTVMOUhOY1ZnOHVIUGFtd0RtU0p1QldPYmIwY2p6UElmVUt2MDZwMnR2SFJycGdFT2JvWE9MRnZLSHdJRmhVOE1BQnBkaGtkYnlPSGFEYnpZenJLQXBGMW1NYlFxc2RqeWNvUXAwSWd0THlUaVB3X1ZjTk1HQVhsaVZGSk01S2NLMmhfanJQdEYwTUozU0N5d1hiX2RrVngzeFVnX2J2T2wzNUtndXJZUDhXekdSOVRYSlEzUVZfeFNQcHRYaTh3aXlyaVd5SnA5d0F1TDhCQ3BabjhQX3c1bTVhbk5Lb1VNdUh2UERGNU1FRDlQeFVSNl90THB6b0ZmaUkydHYxbkt2UDdoY1BMTkc0alZQeXpZZzVLOG42UUsyRmczSXIybll6cUF2TjZyUWlOTlBLU0ZEUFFZTWRnNV92Qng0QnZHX3c0NHNEX3VybjlrZS1ObjQ5OG5rRWF3b201amF5M2xlSHNPRk5oUGVFVlh1OURjZVJRNjBnQkxkRFBTbl94MmN0R2hPNlI5TWl2Qzh3YzhQMUZTdDI1aXJVTng3N3hFZjJfTmJnUTJleVg0TDJ2bWFxQzRicG90VENsbFc2UEQ0M1gyWGpvczhodnRTZExIaFVsT2x0OXllLXc3cndhQ0dxRUhvTm9ydjdtUGlObjIwZUQyR2dtY0kwMEF5LTlJNVBLMlg0TUx0U3VBbXBVWFVqR2pnUkZBWERUZmp1alFtRTJiUWU3dlRncTdSeXRjM21uVzZFT3ZsaGZWUU9RbUlIOUhkbXROeUF2UmJmcUZKdmJvemt2WkRVNDI5MkI2OTV6M2ZBLS1YYWVjMUZobl9NWVo2c09TVF8xWUlOZ0o2UEN6akwwVjIyRjE5OVdEZEhlY0l5LUpIbTJzYmhNcXJTMmdMTGZwbHQ1UEtvSEZ0alBzNTVKbGhsUkpoaHJkTzRCRWtEb1JQRHV3NV9hNVRvOW5rQW1hUGVXUDZsTHhXNDFFRE5pa0NIT21ydXpSVGFiUkgyM2V2TFNzak9ZX1RGU3hmaEVBVm1EOVN6anpQNU9mbldKRnBWUW9EQTVheHJNVjgyUlozRHlNVDRKdHJ6VTFIRDZyN1U1UUJFSGJLRy15NkhweEFFOHRsQUd2UzQwbl9zYlJiVm02OGFmUGpfbzJDQlE5ZUM0TlZoMlhvOUFEN1VwVDZhSjVtR1l3cmpLRmNhS3VXQmtfLUcyOEFSclk3R0pjMnVwTFgzWlFzOW9BRENJaDl4dnNxTUtVUkpncXhNODg1XzdDcG56cEFmZzBtbGZsVFNCUGlmX1dqc3RoRUFieTRaZnNUZFo1cnJoUzFvRTZuMENvUklwaE8wRjFHbWM3djhoOGhzV1p1Z2UyZzNhTEg2dlAyTFdQVC1JVkFMWEhFZ3BVS1BWanc3UWR2cGtvLWl3NGpyNUdBaFdZWVZuaTNLekk5MTg5YkxfYW85NG9TT3Joa2o4eTdmUFZGUExyLXQxaktXQ21OX2tFV1ozTEZzU1hPYVhfMG8zcGxJQ0wwbVVHOW53TzlETFB1NFBTUHlrdjVrbDB1V3dtZzZEVXVFUUdRU3J1M29GU3N2emZZQmNKWG9JRWtTRXc4aDhYMUtTTjYxal9QeGlvZlh3c3NfYmVqMzdKTGpmZnJNb21RQ2JNa2hYYmRzN1JxaW1PNnFsdlZONnhJVGhYWGJRcHQ1UGQ4cEZLWW1WWVJWbWF2cXRPTm9PbjdTSHhjcV92MzJBc1VxbThIQUJTZlBBdnVrVFhGMm9FT0Ztd3hURGdGTDQ2eWJVQm1DNHhrZFpOa1pzcXFNQ2ZubnhqTnN6MGd1NFBTd0hWVlMtZU52WWVUeTIzNVJuY1dWazNqalVyQkV0anAwdWtYR1ZVUWVvQkQ3THd5SEs0VjFoTWFhcE9vUUU0alRaQmRkUkFKaTczVzJwLVFnNkNadERZbk5CWXZBRXVBZmJKNjE2WjdQRm56UHA5XzFFN09paHEwVXV1dU1wVm5BZXVpWFNFT05Fc05qRkRfVGNrZGwtN3BJU3FabElkX3o4czlIUmNsRkk3ckFJYkxaLWdhZVB0Tlp6b0dTNUNvRWZuQXhoYm1EbkxHMUswS3NRcEdubldwZW9ITlo1RERTTlk3ZVFpYUhxSmVXcVVidDJxOHJDcWYzNjdlZm52TFdmQmVrX3lWY2ZlQU9XVi02Z3hrWldndGpyaWJWNU1sa1FqQUlpcjREN3F0UVZlMVFLRW9mTElqV1JFNGtod1YyQ0xOUW5uaU1lYVdkd1JiWWwyajFZcjhNdHFrcEcwZTh5QTNqLXBnQU9WN2dMY2tKZ18xVUJENUREYk9rdlR0bmd4VHc1bURsSU9XMml3TGpKUnlhRFhmOTRYZVloekRubDh5UkZNU21EMGZycVJNUEIwNXRZYWFLT05VWHJ3MGdyMnlCeFNMNTl2bm51R2xKSzk5TGh5YWYuSkFYTU5JSWNwai0wUFB3OFdwWlZ3QQ==",
+                "hsmProviderId": 0,
+                "id": 4,
+                "password": null
+            },
+            {
+                "alias": "localhost signed key pair",
+                "fileData": "T0JGOkpXRTpleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMklpd2lhMmxrSWpvaVREQnhiRTFhU0U1ak9URjVRbk5EVmlKOS4udkV2NW1xenc3NGlJVWhmVHp3eFIwQS53SVJXa21xLXBmSUFpTC1BcnN2bGZiTkRkWWg5QkNJMzllemZtR0RyNEtBbmdqU3ZnWXpSYkt5eUNQS2VWNklXTTRmcUdhaHVXVTRwbDRhNWhjNU9JYktycXd5WmRHcW16RHJUbVNJUHBiczdMWk5SX2w4WDBkSTl3V3J5Y2swWmdXRFJVYXpDdDZJRkt0MVNOcmlSOXdYRUp4XzV5RFpDMGR0aUptV3A3RXk1X04wYjlqWk1aYUtPZXZDWG1Kam85YWM0ZXpPcDFSZlNxV0xTYW1VWkVQOGVvRzVCS3I2ekQ0UG9ELWJMamQ0Y2I3Nl9ncURlRGV2NUVpR2g0NEJyWFBQaWxZTXpXYmFYcERZNkxiTEx4VXNydkxQajlJSWZJM3JCN1BjdVp4bmh0R1pHMlo4UnVLVUxETjhqdGRiN2NZZ040SUpsVjZ1MGJkdk1FOE0yUUx5R05pWTIyQjVPc21zQWd1VjdXU3FLbmlfS0RQU1liZ2h0MHdUM3lMdXV4c1pNZk1PbkRVWFhUcm9WRkJEd2VJcXI5cVF6TGhKbFRIWjNHdU9hMy1iSlRmTUlST0lCQk1aU2tSMVZaNHJvMG0tbmEyWk9meFhrTFAyLWJYREptbGE0bUZ2TkY4bXIwZnNRYl9RREVvQlAtaG9NbGVadjBobGg5ekh0MXBldGdabzdKNzVodFVHdzZxeWZneHMxVFU5VnBINmtrY0tvSXJZUVpCZHpBSTNUXzZTODF2N01YdllJSlJleW9JM0ZhbE11N2NTT1BpcnR5V0JUbUJ5b3hVUlpfdWJCZHFQWWZEY2prbkJHNFdFQXYwSXdyT0NuM3NmOW9vN21aMlVmczZteUtncXNPTXZfQVlmT1JvaDlxaHJ3VXhDZ3I3Ni1WRHltWFZZWW9WcFpVejhxMHJBMjRKYTVrOEJLZDRqMzFsYm50dm9NR1hMbkllU05Hc242V19JbERfRHlDazV5a00tYjBZb2NUSXo0czVXRTdUS1BSVHVfbUk1REVXTFJLakttaUN2dHloNkxzem90dWZrWjJIdkJDQkN1NXVDczQ1dUZPZUVPejllUEloa09YSDBmUUN1RkVKSlZxbXJJOUc1dnFta2RLTjVfNURwSVBXeXI2RU1mZGhRWUhoZWtOSG1lTWJfLXB6NFY0ZjcwcGNrRERrYmNmcHFtcFp2QUdLUE9Yblp4UVNJY19QbjBtUjhzVGVPZlp3S2tiWEh0bzNxaHFBQml3c283YWMtTnhhTHlwdnIwbkpETXdOZTE0am1IYS02QmhqbDFleVp4OEo3WEhjY2l2eWxyQWlYUmJDMEUyQTJVNWs3bXlnaTBQdTZQVjBqb1gzQVZIRWY3LVktNGxycldHQ0FoOFdnVC1LOVJoVFZiOXY4aW9NSHhpRTl5QjNfbm5GOEZUZlZTM1VlR1FPTUpIX214eUU2cHZyUkNUTFVpdk1qTTNiWWZ0WnVleUk1VGhrc05jVVBHajh1VDNwVlFlQVoybW12anhhNTJPTUZSZFNOMDJKRTR3cUJnZWpidXVuVkYza1h4MXp2bG5aSlNHT3hmM1FHQ3RvLXZ6WF9qT0ZoSnFWRUV2ZFF3SHV3dVhLNGc2dEVoR2RROC1NUlFqcFNSc3FYVWlKWnczSE9ZZDJETElqUDFRYll1N3JYb1VPSFBXSWMzUE9RRm02aFc0S2NmWTROSUtSWkRpRkY2RUw4VFpIV1hqazV3YWYtUDhUcWZaUUhWYVZuU3MzZmtDT0hYMEFoNlhmSzd4b3NpUDhwMTlzcTVuSDRtdTZEcUt4T212VmhaaGNLSTktNmdWVzFfZGprSUVEbmhuNk9KNW05NGtfXzVfMG5aTlR2aGdSV2ZDNjhHakJhcHRHb0NwaElLR3Uxc2NYRWtsWkpES0Rwdk5YZk0xQXBPVUFNZDVTRnkzYmd5V0E1WlFGaVpYTjRlMWZHLV9TOU01RTlqZFd1MGNCQTJCWmVBMUkwTW9qS3RkdEwwNldhZlZkZnc1aGkwSFJCSF9lUS1uY2p0b0xqSzNodmJQVkE1ejZ2RDVwblNQcTlJMS1haG9udENmSkM3ZlJ5VkM2MHR0RDlCdm5pVDdUM1diQWVuOE4wc09NSUlPVGQ1OW1LRU1kZWZaTDBsdnB1S0dwOWcyV0huQTUzNzVpOHpaTm9mS2VHXzhDeEV6YmRiVjVQYV9vaDVGMjlJcXplZEpWb28wUVBabVBveDQ4Z3JtV2pyOXBES2FyRzRuVVlzSUlGYmlETGxCUXE4N1VtWkgzTzdvZmFROFJKNXI1YnZNYk1Wd3VzSHJrVjBCQWVCRHM1bEZGaUY5TTY4Q3B1WDBlb2NCbjNkTVppMWlCSEMtQlAzbzFLczJ4dUI4ZHJVeWN0NFpBV2ROcms2Z0E2cXEzX1JjN1FCRHJJdXVDWVpUMHp4cENjZ0N3QkhZV0hFakxoM2V2clJ5cWUzSjNBbDBSUlZnSUNza3FmVlpUMXNlOVBCN0tPZm9IdDQyOG1wQ2xrcE1lMVR0OGJQUGdxcTFWY0N6R1g3TEFXMWNLNmxDVnBuVGM1T0k2MTdnOVFkZkgybVBFOW5PQk9hd0UyWkZhZklCOUFqbVZ5S25VLUpNSUtWMm1GZjR5U21zR0hGMXRDbU1DN0xUdXhfNWpMcHUtSW1mejZ4blAxSEdwZVpYOVF1YkVmcDBwR1FydFRvTHUweF8tTldnd0dkVVpaLVg2M19OV2hVMldTTkVKN3A3MnM0Z3VZWGpuS3AtOXl4dXZ4UEFWdGUxVTVFS0dab09FLWJmVXRORjRQZU1aSllnNkFSZ2FmOVZQbkJnUGdZWEdVRVJJRE9kVHdwRzJEd2J3OXU5Skd6NXJvM3pfMks1aS1feU5XRlZnT09OR1NLRUN5enRtS0hBMll3LTFHZHcyS0YtVkg5UjZtTVA0ZGU2aHkzOW5MODRFVTdQMzEtMWwtSkkzcHNrYWR5RS1XTk9CSU00S2xrdlAtOWhBeFdvNEk2aUNwS20yb2lpSEQ0Smc2bU5KYm15NzQ3cUd3b2syZGY2TENFajNWVURmcEJrbmFGS2lhQ3FfOU1YLXk1ZS0tMk1PVVM2SlRCbGQ0Zi1uVnd3XzRWX3F1bExHdFVZU2JjVjhGSjVZdFQtd2phd0paMFJRZ2JqbE83UlpVX0FwMzdiZmVqTGExT29PaDdnV3lGV3ZvNWUxeXI3QUI2R28wNkpBSG04cU1VWmFaVHI2YlptOE1DM1VYak9iLWh6M2d0bzdzcWxqUlhHS2NmWjlIS3VvSHlWRk5mS3ZtSkVqWmF6c1BXOUtISzM4UXQ0dDItc1k1UkIwMC1YOXNsZ2QtZHltNGRualBGbG9tNzJBXzJSMFloTjBjcFJaRnk5TWMtUGRMcFNKaHJ0SWxrU2xYbUlrc2tjTV9lanZpSlM2dkhFWlZBcHVQOEZNc1VNQ3A3ZUdyVUJ0QW81OGFqSjlxVG1Ia2Y5UjhjN3dyY2hFWWxMUXQyR2x0blYyamx4VVdqWHNMYUJZb0NXajJiN2MyTWdyckhsYm5TUHJlQWNYcTlvMWRMQVM4Q2JRR0FiLW1MNzJTWkRsTGxwT054ckFFajcxOWNMX3JQZkJkemEtY0tDR0JCb3B0Qzd6SVk2dWhuajV4Q1BIU1loX3pQV1RBY0xlWHRlYVZCM2tHUlBIS2kzcjVuMVNwN0JfWFNuLXlSb25pMDdOUkVHUElGQlFzcl9RaS1TbXcxdzByMGpDX3RRNzJCYTIzckV0cDNNbGFidk1jcEdmbW9OaUdJTFJtQTBJb1NkcWhFRmVUZjktcUY3NU5ld0xEZG4zV3RGdGUzWVRJZ1FaUG1pTmh2dGVwYlRJQTUwRkNMZURtTVdYbUE5TWNUVzRhZTRHRFNXbGdRME5BREVxWncyRkFhY2hrSi1HSU9VQjNKRnpnQ2lwUkR4VXhMYmpzcVA5QVVLTndMblh6UVJnUjhuY00takFTaTZNNEUxMmpMVE1DVnpNc2syQnBocEpzWTdncG5nMllIX3NCUnVzcGZjaHNXdG50ODFwNE1zMjA2a3ZPSUZaRkJlM1k5YVBZSVVZZHhEbVMtdHF1eHZlQnVKUWNOM3E3elNfVFU3U2otLTEyeGI3SjBNSUNOSjBCODRYY1pneERYLV9GVDhBYVFEVW54TnR0bWVnYzhUeTBYM0tzRVFaOFJnai00WWJPUmw0aEZRdG9TbHBRLXExUWZOSVMzSERiNl9HSzNrRkk5Zk85TjdBTWhZSG1fTGJyVGhQNURXY2tqMThQc3FrelBBSjE3emNZRXR3REJEUkhLeWVDdDJBUWNnWmZxX21TSEhOTEhHZ1BsWEFhLTJkdjVqMjBqaFptLUxBQ3pWdmFJNjdyLWZzc0JqU2h4SHZUak1aRGpjRTlVdVB3aTJEekYxLWJhUUdoTHBhbXg4UHJ3Wk95NzYwWmlZdDdBUTQ3Vk42S2VlVHE4OFhSYUNBQ2R6ZHNPbTY2LUF1SUlHWHF1N01mSU5hVV9JaVEySUpwSzZTTXlUS1MySFBJMkt6NEUtWFFSS0VRVEtKQ2MwUHZSbDVUZFJ4dkU2QWRhSVRvV0NteEtrdXJlYjFnQXpRVnhxQlJWT3pLX0swejhJR2hJcGJfYUswLTBDSnlZNlBUbExuRURndkhEejZXRFN6NDFVM016RVowTFpKaUlkN1gwT0FmcGNaZnJWalJxWDFSZFY1SU5DQm5PXzRucElSMC5Ea1lvcWdjanJ0Z1VHY29WWnlnOTVB",
+                "hsmProviderId": 0,
+                "id": 5,
+                "password": null
+            }
+        ],
+        "loadBalancingStrategies": [
+            {
+                "className": "com.pingidentity.pa.ha.lb.roundrobin.CookieBasedRoundRobinPlugin",
+                "configuration": {
+                    "cookieName": "PA_S",
+                    "stickySessionEnabled": true
+                },
+                "id": 1,
+                "name": "Default Round Robin Strategy"
+            }
+        ],
+        "oauthKeyMgmt": {
+            "keyRollEnabled": true,
+            "keyRollPeriodInHours": 24,
+            "signingAlgorithm": null
+        },
+        "pingFederate": {
+            "application": {
+                "additionalVirtualHostIds": [],
+                "caseSensitive": true,
+                "clientCertHeaderNames": [],
+                "contextRoot": "/",
+                "policy": [],
+                "primaryVirtualHostId": 5
+            },
+            "auditLevel": "ON",
+            "availabilityProfileId": 1,
+            "backChannelBasePath": null,
+            "backChannelSecure": true,
+            "basePath": null,
+            "expectedHostname": null,
+            "host": "",
+            "loadBalancingStrategyId": 0,
+            "port": 0,
+            "secure": false,
+            "skipHostnameVerification": false,
+            "targets": [
+                "pingfederate:9031"
+            ],
+            "trustedCertificateGroupId": 4,
+            "useProxy": false,
+            "useSlo": false
+        },
+        "pingFederateAdmin": {
+            "adminPassword": {
+                "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTDBxbE1aSE5jOTF5QnNDViJ9..cWZcJ9Quesbe7vMbS2TQTA.iS5-xdXY6--f1NJcRw5lwg.3KDi_PkHOvX_9s9V_K25Hg"
+            },
+            "adminUsername": "Administrator",
+            "auditLevel": "OFF",
+            "basePath": null,
+            "host": "pingfederate",
+            "port": 9999,
+            "secure": true,
+            "trustedCertificateGroupId": 4,
+            "useProxy": false
+        },
+        "pingFederateOAuth": {
+            "accessValidatorId": 1,
+            "cacheTokens": false,
+            "clientCredentials": {
+                "clientId": "pa_rs",
+                "clientSecret": {
+                    "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTDBxbE1aSE5jOTF5QnNDViJ9..2vjpVKi-T54PB1kGKslLXA.HTyoffUiwEy4OldolqfcRQ.McvbTO7LFbZMu7KE0odlwg"
+                },
+                "credentialsType": "SECRET",
+                "keyPairId": 0
+            },
+            "clientId": "pa_rs",
+            "clientSecret": {
+                "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTDBxbE1aSE5jOTF5QnNDViJ9..2vjpVKi-T54PB1kGKslLXA.HTyoffUiwEy4OldolqfcRQ.McvbTO7LFbZMu7KE0odlwg"
+            },
+            "name": "PingFederate",
+            "sendAudience": false,
+            "subjectAttributeName": "Username",
+            "tokenTimeToLiveSeconds": -1,
+            "useTokenIntrospection": false
+        },
+        "rejectionHandlers": [
+            {
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "configuration": {
+                    "contentType": "HTML",
+                    "responseCode": 403,
+                    "templateFile": "policy.error.page.template.html"
+                },
+                "id": 1,
+                "name": "Default Web Rejection Handler"
+            },
+            {
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "configuration": {
+                    "contentType": "JSON",
+                    "responseCode": 403,
+                    "templateFile": "oauth.error.json"
+                },
+                "id": 2,
+                "name": "Default API Rejection Handler"
+            },
+            {
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "configuration": {
+                    "contentType": "JSON",
+                    "responseCode": 429,
+                    "templateFile": "oauth.error.json"
+                },
+                "id": 3,
+                "name": "Default Rate Limiting Rejection Handler"
+            }
+        ],
+        "reservedApplication": {
+            "contextRoot": "/pa"
+        },
+        "resources": [
+            {
+                "anonymous": false,
+                "applicationId": 1,
+                "auditLevel": "ON",
+                "authenticationChallengePolicyId": null,
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "id": 1,
+                "methods": [
+                    "*"
+                ],
+                "name": "Root Resource",
+                "pathPatterns": [
+                    {
+                        "pattern": "/*",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/*"
+                ],
+                "policy": {
+                    "API": [],
+                    "Web": [
+                        {
+                            "id": 2,
+                            "type": "Rule"
+                        }
+                    ]
+                },
+                "queryParamConfig": null,
+                "resourceType": "Standard",
+                "resourceTypeConfiguration": {
+                    "responseGenerator": null
+                },
+                "rootResource": true,
+                "unprotected": false
+            },
+            {
+                "anonymous": false,
+                "applicationId": 1,
+                "auditLevel": "ON",
+                "authenticationChallengePolicyId": null,
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "id": 2,
+                "methods": [
+                    "*"
+                ],
+                "name": "/login",
+                "pathPatterns": [
+                    {
+                        "pattern": "/login",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/login"
+                ],
+                "policy": {
+                    "API": [],
+                    "Web": []
+                },
+                "queryParamConfig": null,
+                "resourceType": "Virtual",
+                "resourceTypeConfiguration": {
+                    "responseGenerator": {
+                        "className": "com.pingidentity.pa.resources.responsegenerator.RedirectResponseGenerator",
+                        "configuration": {
+                            "responseCode": 302,
+                            "url": "https://localhost:9001"
+                        }
+                    }
+                },
+                "rootResource": false,
+                "unprotected": false
+            },
+            {
+                "anonymous": false,
+                "applicationId": 1,
+                "auditLevel": "ON",
+                "authenticationChallengePolicyId": null,
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "id": 3,
+                "methods": [
+                    "*"
+                ],
+                "name": "/logout",
+                "pathPatterns": [
+                    {
+                        "pattern": "/logout",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/logout"
+                ],
+                "policy": {
+                    "API": [],
+                    "Web": []
+                },
+                "queryParamConfig": null,
+                "resourceType": "Virtual",
+                "resourceTypeConfiguration": {
+                    "responseGenerator": {
+                        "className": "com.pingidentity.pa.resources.responsegenerator.RedirectResponseGenerator",
+                        "configuration": {
+                            "responseCode": 302,
+                            "url": "https://localhost:9031/idp/startSLO.ping?TargetResource=https://localhost:9001"
+                        }
+                    }
+                },
+                "rootResource": false,
+                "unprotected": true
+            },
+            {
+                "anonymous": false,
+                "applicationId": 1,
+                "auditLevel": "ON",
+                "authenticationChallengePolicyId": null,
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "id": 4,
+                "methods": [
+                    "*"
+                ],
+                "name": "/user",
+                "pathPatterns": [
+                    {
+                        "pattern": "/user",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/user"
+                ],
+                "policy": {
+                    "API": [],
+                    "Web": [
+                        {
+                            "id": 2,
+                            "type": "Rule"
+                        }
+                    ]
+                },
+                "queryParamConfig": null,
+                "resourceType": "Virtual",
+                "resourceTypeConfiguration": {
+                    "responseGenerator": {
+                        "className": "com.pingidentity.pa.resources.responsegenerator.JsonIdentityMappingResponseGenerator",
+                        "configuration": {
+                            "attributeMappings": [
+                                {
+                                    "attributeName": "groups",
+                                    "propertyName": "groups"
+                                },
+                                {
+                                    "attributeName": "sub",
+                                    "propertyName": "username"
+                                }
+                            ],
+                            "exclusionList": false,
+                            "exclusionListAttributes": []
+                        }
+                    }
+                },
+                "rootResource": false,
+                "unprotected": false
+            },
+            {
+                "anonymous": false,
+                "applicationId": 2,
+                "auditLevel": "ON",
+                "authenticationChallengePolicyId": null,
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "id": 6,
+                "methods": [
+                    "*"
+                ],
+                "name": "Root Resource",
+                "pathPatterns": [
+                    {
+                        "pattern": "/*",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/*"
+                ],
+                "policy": {
+                    "API": [],
+                    "Web": []
+                },
+                "queryParamConfig": null,
+                "resourceType": "Virtual",
+                "resourceTypeConfiguration": {
+                    "responseGenerator": {
+                        "className": "com.pingidentity.pa.resources.responsegenerator.TemplateResponseGenerator",
+                        "configuration": {
+                            "mediaType": "text/plain;charset=utf-8",
+                            "responseCode": 200,
+                            "template": "PingFederate session established."
+                        }
+                    }
+                },
+                "rootResource": true,
+                "unprotected": false
+            },
+            {
+                "anonymous": false,
+                "applicationId": 1,
+                "auditLevel": "ON",
+                "authenticationChallengePolicyId": null,
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "id": 7,
+                "methods": [
+                    "*"
+                ],
+                "name": "/login/non-interactive",
+                "pathPatterns": [
+                    {
+                        "pattern": "/login/non-interactive",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/login/non-interactive"
+                ],
+                "policy": {
+                    "API": [],
+                    "Web": []
+                },
+                "queryParamConfig": null,
+                "resourceType": "Virtual",
+                "resourceTypeConfiguration": {
+                    "responseGenerator": {
+                        "className": "com.pingidentity.pa.resources.responsegenerator.TemplateResponseGenerator",
+                        "configuration": {
+                            "mediaType": "application/json;charset=utf-8",
+                            "responseCode": 200,
+                            "template": "{}"
+                        }
+                    }
+                },
+                "rootResource": false,
+                "unprotected": false
+            }
+        ],
+        "rules": [
+            {
+                "className": "com.pingidentity.pa.policy.cors.CrossOriginRequestPolicyInterceptor",
+                "configuration": {
+                    "allowCredentials": true,
+                    "allowedOrigins": [
+                        "https://localhost:9001"
+                    ],
+                    "allowedReqHeaders": [
+                        "Authorization",
+                        "Content-Type",
+                        "Accept",
+                        "X-Xsrf-Token"
+                    ],
+                    "cacheMaxAge": 600,
+                    "exposedRespHeaders": [
+                        "Content-Length"
+                    ],
+                    "maskWildcardPolicy": true,
+                    "overriddenReqMethods": null
+                },
+                "id": 1,
+                "name": "Allow Cross-Origin From https://localhost:9001",
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            },
+            {
+                "className": "com.pingidentity.pa.policy.HttpRequestHeaderPolicyInterceptor",
+                "configuration": {
+                    "caseSensitive": false,
+                    "errorResponseCode": 403,
+                    "errorResponseContentType": "text/html; charset=UTF-8",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "fieldValueRows": [
+                        {
+                            "field": "X-Xsrf-Token",
+                            "value": "constant-value"
+                        }
+                    ],
+                    "negate": false,
+                    "rejectionHandler": "1",
+                    "rejectionHandlingEnabled": true
+                },
+                "id": 2,
+                "name": "X-Xsrf-Token",
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            }
+        ],
+        "sites": [
+            {
+                "availabilityProfileId": 1,
+                "expectedHostname": null,
+                "id": 1,
+                "keepAliveTimeout": 0,
+                "loadBalancingStrategyId": 0,
+                "maxConnections": -1,
+                "maxWebSocketConnections": -1,
+                "name": "SPA Sample API",
+                "secure": true,
+                "sendPaCookie": true,
+                "siteAuthenticatorIds": [],
+                "skipHostnameVerification": true,
+                "targets": [
+                    "host.docker.internal:9001"
+                ],
+                "trustedCertificateGroupId": 2,
+                "useProxy": false,
+                "useTargetHostHeader": false
+            },
+            {
+                "availabilityProfileId": 1,
+                "expectedHostname": null,
+                "id": 2,
+                "keepAliveTimeout": 0,
+                "loadBalancingStrategyId": 0,
+                "maxConnections": -1,
+                "maxWebSocketConnections": -1,
+                "name": "httpbin",
+                "secure": false,
+                "sendPaCookie": true,
+                "siteAuthenticatorIds": [],
+                "skipHostnameVerification": false,
+                "targets": [
+                    "httpbin.org:80"
+                ],
+                "trustedCertificateGroupId": 0,
+                "useProxy": false,
+                "useTargetHostHeader": false
+            }
+        ],
+        "tokenProvider": {
+            "type": "PingFederate",
+            "useThirdParty": false
+        },
+        "trustedCertGroups": [
+            {
+                "certIds": [
+                    2
+                ],
+                "id": 4,
+                "ignoreAllCertificateErrors": false,
+                "name": "PingFederate Cert",
+                "revocationChecking": {
+                    "crlChecking": false,
+                    "denyRevocationStatusUnknown": false,
+                    "ocsp": false
+                },
+                "skipCertificateDateCheck": false,
+                "systemGroup": false,
+                "useJavaTrustStore": false
+            }
+        ],
+        "trustedCerts": [
+            {
+                "alias": "pingfederate",
+                "fileData": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1RENDQWN5Z0F3SUJBZ0lHQVhiOVo0Vk9NQTBHQ1NxR1NJYjNEUUVCQ3dVQU1ETXhDekFKQmdOVkJBWVRBbFZUTVEwd0N3WUQNClZRUUtFd1JRYVc1bk1SVXdFd1lEVlFRREV3eHdhVzVuWm1Wa1pYSmhkR1V3SGhjTk1qRXdNVEV6TWpBeE9UUTRXaGNOTWpJd01URXoNCk1qQXhPVFE0V2pBek1Rc3dDUVlEVlFRR0V3SlZVekVOTUFzR0ExVUVDaE1FVUdsdVp6RVZNQk1HQTFVRUF4TU1jR2x1WjJabFpHVnkNCllYUmxNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQXRsSVlyZU03TmljZnByNUN3UnU2T2xSaHJtZjINCm96NWlVT1RDRlhRSFlQUDAzV0ZoTVNJdHlIMGhQSmJWckVPZFZ3VkE2MytJbTlsUjNDZUt0TFRtK3g3aVk2dmNuYXllcytlaGtFenUNCi9JSDAvRmRpZC80SlFMMDFMUEN2VGVCLzJ1YUdlVXZleXdBNWFuZFFXMjFwbjNrc3VMdERzc3ZvNmJMeHlHcStKZUZ0ajJhN3pmOTINCitvWTdla1FrcmpEYXVlRTNLZy9NRkxwTmVaYkNVeWdsbmJtRU5ub0lXTDJsQ3B0NGZGUExpMG9MaXZROG9JVnQzUXdFRkIxRTMzMGQNClhXdmVDdDBBTWdWcWdReWJBZW1GYjcwa093OUpKN0R2dTdSdmpVYk4yMzZmU1dQOVFLamFMaFpxczViY1p3aUVBd3EzelJvZ2FCZ0YNCkFkajFEWWtKRXdJREFRQUJNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUIyZE9OYit2VU9hNkI5RDlQK05NZ1l6STAwN013V21lUXMNCkdLU012bW1iZVFsM2F6K1lFZitQbUNZNTY4eE4zSVFpVHFDcHFiTnc3Wnp5RUZSNlRaYmRuZFZ1MWdKRGc2L25XeWVVM0lrY1lDS1ANCmh1YmM1cVJWcmJnOEt4aTNlb2x6L3hxM1VVNnVaY0FxcVhFb2FqZDJ1aDh3L0NESWNJUUtwWlM5ZDU1TFY1SU50MHNqTU9UUkxpVXkNCng2THJ0c2ZMY05zODdpb0FnMUlYRTE4Qm5VQkc0ZllodVNUdDYxMnRLS01wbHRzR0xnVEpFVElBSVcrWDVrMitFY2dMV0QzZ1dRVU8NClg1aDg0cnVHZVFyRUlVK05wVkhRTzJMVG1qUEIrbFpFU3FINzFQbmV4L3ExMzkrZy9FYlFNbFpHdWlHT0V3OGRHNzU1bW12bXZqUmcNCjBMWk8KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
+                "id": 2
+            }
+        ],
+        "unknownResources": {
+            "agentDefaultCacheTTL": 900,
+            "agentDefaultMode": "DENY",
+            "auditLevel": "ON",
+            "errorContentType": "HTML",
+            "errorStatusCode": 403,
+            "errorTemplateFile": "general.error.page.template.html"
+        },
+        "virtualHosts": [
+            {
+                "agentResourceCacheTTL": 900,
+                "host": "localhost",
+                "id": 1,
+                "keyPairId": 0,
+                "port": 3000,
+                "trustedCertificateGroupId": 0
+            },
+            {
+                "agentResourceCacheTTL": 900,
+                "host": "*",
+                "id": 2,
+                "keyPairId": 0,
+                "port": 3000,
+                "trustedCertificateGroupId": 0
+            },
+            {
+                "agentResourceCacheTTL": 900,
+                "host": "localhost",
+                "id": 5,
+                "keyPairId": 0,
+                "port": 9031,
+                "trustedCertificateGroupId": 0
+            },
+            {
+                "agentResourceCacheTTL": 900,
+                "host": "127.0.0.1",
+                "id": 6,
+                "keyPairId": 0,
+                "port": 3000,
+                "trustedCertificateGroupId": 0
+            }
+        ],
+        "webSessionMgmt": {
+            "cookieName": "PA",
+            "encryptionAlgorithm": "A128CBC-HS256",
+            "issuer": "PingAccess",
+            "keyRollEnabled": true,
+            "keyRollPeriodInHours": 24,
+            "nonceCookieTimeToLiveInMinutes": 5,
+            "sessionStateCookieName": "PA_STATE",
+            "signingAlgorithm": "P-256",
+            "updateTokenWindowInSeconds": 60
+        },
+        "webSessions": [
+            {
+                "audience": "default",
+                "cacheUserAttributes": false,
+                "clientCredentials": {
+                    "clientId": "spa_sample_client",
+                    "clientSecret": {
+                        "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTDBxbE1aSE5jOTF5QnNDViJ9..L2SzVydMP8-FK9q4fpsUQw.5mju8Qit66bg4ad18WUZzQ.35fZcEvBH7wH7GkaZc1m2A"
+                    },
+                    "credentialsType": "SECRET",
+                    "keyPairId": 0
+                },
+                "cookieDomain": "",
+                "cookieType": "Encrypted",
+                "enableRefreshUser": true,
+                "failOnUnsupportedPreservationContentType": false,
+                "httpOnlyCookie": true,
+                "id": 1,
+                "idleTimeoutInMinutes": 60,
+                "name": "Default",
+                "oidcLoginType": "Code",
+                "pfsessionStateCacheInSeconds": 5,
+                "pkceChallengeType": "SHA256",
+                "refreshUserInfoClaimsInterval": 60,
+                "requestPreservationType": "POST",
+                "requestProfile": true,
+                "sameSite": "Lax",
+                "scopes": [
+                    "address",
+                    "email",
+                    "phone",
+                    "profile"
+                ],
+                "secureCookie": true,
+                "sendRequestedUrlToProvider": true,
+                "sessionTimeoutInMinutes": 240,
+                "validateSessionIsAlive": true,
+                "webStorageType": "SessionStorage"
+            }
+        ]
+    },
+    "version": "6.2.0.3"
+}
