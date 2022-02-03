@@ -1,0 +1,43 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel --https index.html",
+    "serve": "parcel serve --https --no-hmr index.html",
+    "build": "parcel build index.html"
+  },
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@rebass/forms": "^4.0.6",
+    "@rebass/preset": "^4.0.5",
+    "emotion-theming": "^10.0.14",
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rebass": "^4.0.7",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@parcel/optimizer-cssnano": "^2.0.0-beta.1",
+    "@parcel/optimizer-htmlnano": "^2.0.0-beta.1",
+    "@parcel/packager-css": "^2.0.0-beta.1",
+    "@parcel/packager-html": "^2.0.0-beta.1",
+    "@parcel/transformer-css": "^2.0.0-beta.1",
+    "@parcel/transformer-html": "^2.0.0-beta.1",
+    "@parcel/transformer-postcss": "^2.0.0-beta.1",
+    "@parcel/transformer-posthtml": "^2.0.0-beta.1",
+    "@types/express": "^4.17.13",
+    "babel-preset-nano-react-app": "^0.1.0",
+    "parcel": "^2.0.0-beta.1",
+    "postcss": "^8.2.1"
+  },
+  "babel": {
+    "presets": [
+      "nano-react-app"
+    ]
+  }
+}
